@@ -1,0 +1,119 @@
+# Phase 2: Multi-Source Data Collection Pipeline Configuration
+# This is a SEPARATE configuration file for Phase 2 only
+# DO NOT modify existing Phase 1 configuration files
+
+# Materials Project Configuration
+materials_project:
+  api_key: ${MP_API_KEY}  # Set environment variable MP_API_KEY
+  target_systems:
+    - "Si-C"
+    - "B-C"
+    - "W-C"
+    - "Ti-C"
+    - "Al-O"
+  batch_size: 1000
+  max_materials: 5000
+
+# JARVIS-DFT Configuration
+jarvis:
+  carbide_metals:
+    - "Si"
+    - "B"
+    - "W"
+    - "Ti"
+    - "Zr"
+    - "Hf"
+    - "V"
+    - "Nb"
+    - "Ta"
+    - "Cr"
+    - "Mo"
+  data_source: "dft_3d"
+
+# AFLOW Configuration
+aflow:
+  ceramics:
+    SiC:
+      - "Si"
+      - "C"
+    B4C:
+      - "B"
+      - "C"
+    WC:
+      - "W"
+      - "C"
+    TiC:
+      - "Ti"
+      - "C"
+    Al2O3:
+      - "Al"
+      - "O"
+  max_per_system: 500
+  exclude_ldau: true
+
+# Semantic Scholar Configuration
+semantic_scholar:
+  queries:
+    - "ballistic limit velocity ceramic armor"
+    - "silicon carbide armor penetration"
+    - "boron carbide ballistic performance"
+    - "ceramic armor V50 testing"
+    - "tungsten carbide armor properties"
+  papers_per_query: 50
+  min_citations: 5
+
+# MatWeb Configuration
+matweb:
+  target_materials:
+    - "Silicon Carbide"
+    - "Boron Carbide"
+    - "Tungsten Carbide"
+    - "Titanium Carbide"
+    - "Aluminum Oxide"
+  rate_limit_delay: 2
+  results_per_material: 10
+
+# NIST Baseline Configuration
+nist_baseline:
+  baseline_materials:
+    - formula: "SiC"
+      ceramic_type: "SiC"
+      density: 3.21
+      hardness: 26.5
+      K_IC: 4.0
+      source: "NIST SRM"
+    - formula: "B4C"
+      ceramic_type: "B4C"
+      density: 2.52
+      hardness: 30.0
+      K_IC: 3.5
+      source: "NIST SRM"
+    - formula: "WC"
+      ceramic_type: "WC"
+      density: 15.63
+      hardness: 22.0
+      K_IC: 5.5
+      source: "NIST SRM"
+    - formula: "TiC"
+      ceramic_type: "TiC"
+      density: 4.93
+      hardness: 28.0
+      K_IC: 4.5
+      source: "NIST SRM"
+    - formula: "Al2O3"
+      ceramic_type: "Al2O3"
+      density: 3.98
+      hardness: 20.0
+      K_IC: 4.0
+      source: "NIST SRM"
+
+# Integration Configuration
+integration:
+  deduplication_threshold: 0.95
+  source_priority:
+    - "Literature"
+    - "MatWeb"
+    - "NIST"
+    - "MaterialsProject"
+    - "JARVIS"
+    - "AFLOW"
